@@ -64,6 +64,7 @@ final class PagerViewController<Tab: Hashable, Content: View>: UIViewController,
 
     private var hostingControllers: [Int: UIHostingController<AnyView>] = [:]
     private(set) var isUserScrolling = false
+    private var isResizing = false
 
     // MARK: Init
 
@@ -100,7 +101,9 @@ final class PagerViewController<Tab: Hashable, Content: View>: UIViewController,
         updateAllPageFrames()
         if !isUserScrolling {
             let index = clampedIndex(for: selectionBinding.wrappedValue)
+            isResizing = true
             scrollView.contentOffset = CGPoint(x: CGFloat(index) * bounds.width, y: 0)
+            isResizing = false
         }
         updateVisiblePages()
     }
@@ -145,13 +148,21 @@ final class PagerViewController<Tab: Hashable, Content: View>: UIViewController,
         isUserScrolling = true
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            isUserScrolling = false
+            snapSelection()
+        }
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !isResizing else { return }
         let pageWidth = scrollView.bounds.width
         guard pageWidth > 0 else { return }
         let rawProgress = scrollView.contentOffset.x / pageWidth
         let clampedProgress = max(0, min(rawProgress, CGFloat(tabs.count - 1)))
         progressBinding.wrappedValue = clampedProgress
-        updateVisiblePages()
+        loadUnloadPages()
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -186,6 +197,43 @@ final class PagerViewController<Tab: Hashable, Content: View>: UIViewController,
         }
     }
 
+    private func loadUnloadPages() {
+        let pageWidth = scrollView.bounds.width
+        guard pageWidth > 0, !tabs.isEmpty else { return }
+        let currentIndex = Int(round(scrollView.contentOffset.x / pageWidth))
+            .clamped(to: 0...(tabs.count - 1))
+        let lo = max(0, currentIndex - 1)
+        let hi = min(tabs.count - 1, currentIndex + 1)
+        let pageHeight = scrollView.bounds.height
+
+        // Unload out-of-window pages
+        for index in Array(hostingControllers.keys) where index < lo || index > hi {
+            let vc = hostingControllers[index]!
+            vc.willMove(toParent: nil)
+            vc.view.removeFromSuperview()
+            vc.removeFromParent()
+            hostingControllers.removeValue(forKey: index)
+        }
+
+        // Load new pages (with current environment — they'll be refreshed in update())
+        for index in lo...hi where hostingControllers[index] == nil {
+            let tab = tabs[index]
+            let rootView = AnyView(
+                content(tab)
+                    .environment(\.colorScheme, colorScheme)
+                    .environment(\.dynamicTypeSize, dynamicTypeSize)
+                    .environment(\.locale, locale)
+            )
+            let vc = UIHostingController(rootView: rootView)
+            vc.view.backgroundColor = .clear
+            addChild(vc)
+            scrollView.addSubview(vc.view)
+            vc.view.frame = CGRect(x: CGFloat(index) * pageWidth, y: 0, width: pageWidth, height: pageHeight)
+            vc.didMove(toParent: self)
+            hostingControllers[index] = vc
+        }
+    }
+
     private func updateVisiblePages() {
         let pageWidth = scrollView.bounds.width
         guard pageWidth > 0, !tabs.isEmpty else { return }
@@ -196,6 +244,7 @@ final class PagerViewController<Tab: Hashable, Content: View>: UIViewController,
         let hi = min(tabs.count - 1, currentIndex + 1)
         let pageHeight = scrollView.bounds.height
 
+        // Unload out-of-window pages
         for index in Array(hostingControllers.keys) where index < lo || index > hi {
             let vc = hostingControllers[index]!
             vc.willMove(toParent: nil)
@@ -204,6 +253,7 @@ final class PagerViewController<Tab: Hashable, Content: View>: UIViewController,
             hostingControllers.removeValue(forKey: index)
         }
 
+        // Load or update pages in window
         for index in lo...hi {
             let tab = tabs[index]
             let rootView = AnyView(
