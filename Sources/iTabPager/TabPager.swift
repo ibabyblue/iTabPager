@@ -180,11 +180,4 @@ extension TabPager {
     }
 }
 
-// MARK: - Internal Helpers (testable)
-
-extension TabPager {
-    static func validatedSelection(_ selection: Tab, in tabs: [Tab]) -> Tab? {
-        tabs.contains(selection) ? selection : tabs.first
-    }
-}
 #endif
