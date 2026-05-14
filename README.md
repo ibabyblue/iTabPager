@@ -49,9 +49,9 @@ targets: [
 import ITabPager
 
 enum Tab: String, CaseIterable {
-    case recommended = "推荐"
-    case hot         = "热门"
-    case latest      = "最新"
+    case recommended = "Recommended"
+    case hot         = "Hot"
+    case latest      = "Latest"
 }
 
 struct ContentView: View {
