@@ -6,7 +6,7 @@ struct OverflowTabDemo: View {
     @State private var selection = "推荐"
 
     var body: some View {
-        TabPager(
+        ITabPager(
             tabs: tabs,
             selection: $selection,
             content: { tab in

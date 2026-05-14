@@ -5,8 +5,8 @@ struct CustomStyleDemo: View {
     let tabs = ["全部", "视频", "图文", "直播"]
     @State private var selection = "全部"
 
-    private var customStyle: TabPagerStyle {
-        var s = TabPagerStyle()
+    private var customStyle: ITabPagerStyle {
+        var s = ITabPagerStyle()
         s.selectedFont = .system(size: 15, weight: .semibold)
         s.unselectedFont = .system(size: 15, weight: .regular)
         s.selectedColor = .orange
@@ -20,7 +20,7 @@ struct CustomStyleDemo: View {
     }
 
     var body: some View {
-        TabPager(
+        ITabPager(
             tabs: tabs,
             selection: $selection,
             alignment: .center,

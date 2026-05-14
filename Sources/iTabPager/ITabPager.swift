@@ -1,16 +1,16 @@
 #if canImport(UIKit)
 import SwiftUI
 
-// MARK: - TabPager
+// MARK: - ITabPager
 
-public struct TabPager<Tab: Hashable, Content: View>: View {
+public struct ITabPager<Tab: Hashable, Content: View>: View {
 
     // MARK: Public Properties
 
     let tabs: [Tab]
     @Binding var selection: Tab
     var alignment: HorizontalAlignment
-    var style: TabPagerStyle
+    var style: ITabPagerStyle
     let content: (Tab) -> Content
     let tabTitle: (Tab) -> String
 
@@ -27,7 +27,7 @@ public struct TabPager<Tab: Hashable, Content: View>: View {
         tabs: [Tab],
         selection: Binding<Tab>,
         alignment: HorizontalAlignment = .leading,
-        style: TabPagerStyle = .init(),
+        style: ITabPagerStyle = .init(),
         @ViewBuilder content: @escaping (Tab) -> Content,
         tabTitle: @escaping (Tab) -> String
     ) {
@@ -72,7 +72,7 @@ public struct TabPager<Tab: Hashable, Content: View>: View {
 
 // MARK: - Tab Strip
 
-extension TabPager {
+extension ITabPager {
 
     private var initialScrollAnchor: UnitPoint {
         switch alignment {

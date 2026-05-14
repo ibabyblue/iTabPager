@@ -11,7 +11,7 @@ struct BasicDemo: View {
     @State private var selection: BasicTab = .recommended
 
     var body: some View {
-        TabPager(
+        ITabPager(
             tabs: BasicTab.allCases,
             selection: $selection,
             content: { tab in

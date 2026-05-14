@@ -1,7 +1,7 @@
 #if canImport(UIKit)
 import SwiftUI
 
-public struct TabPagerStyle {
+public struct ITabPagerStyle {
     public var selectedFont: Font      = .system(size: 17, weight: .bold)
     public var unselectedFont: Font    = .system(size: 17, weight: .regular)
     public var selectedColor: Color    = .primary

@@ -1,11 +1,18 @@
+# macOS
 .DS_Store
-/.build
-/Packages
+
+# Xcode
+*.xcuserstate
 xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
 DerivedData/
-.swiftpm/configuration/registries.json
-.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
-.netrc
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Superpowers / Claude
 .superpowers/
 .claude/
 docs/
