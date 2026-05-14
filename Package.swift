@@ -2,13 +2,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "iTabPager",
+    name: "ITabPager",
     platforms: [.iOS(.v17)],
     products: [
-        .library(name: "iTabPager", targets: ["iTabPager"]),
+        .library(name: "ITabPager", targets: ["ITabPager"]),
     ],
     targets: [
-        .target(name: "iTabPager"),
-        .testTarget(name: "iTabPagerTests", dependencies: ["iTabPager"]),
+        .target(name: "ITabPager"),
+        .testTarget(name: "ITabPagerTests", dependencies: ["ITabPager"]),
     ]
 )

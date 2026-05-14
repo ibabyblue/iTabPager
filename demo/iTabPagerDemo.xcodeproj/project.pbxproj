@@ -13,7 +13,7 @@
 		BB0000000000000000000027 /* OverflowTabDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000026 /* OverflowTabDemo.swift */; };
 		BB0000000000000000000029 /* CustomStyleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000028 /* CustomStyleDemo.swift */; };
 		BB0000000000000000000031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000030 /* Assets.xcassets */; };
-		BB0000000000000000000042 /* iTabPager in Frameworks */ = {isa = PBXBuildFile; productRef = BB0000000000000000000041 /* iTabPager */; };
+		BB0000000000000000000042 /* ITabPager in Frameworks */ = {isa = PBXBuildFile; productRef = BB0000000000000000000041 /* ITabPager */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB0000000000000000000042 /* iTabPager in Frameworks */,
+				BB0000000000000000000042 /* ITabPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +84,7 @@
 			);
 			name = iTabPagerDemo;
 			packageProductDependencies = (
-				BB0000000000000000000041 /* iTabPager */,
+				BB0000000000000000000041 /* ITabPager */,
 			);
 			productName = iTabPagerDemo;
 			productReference = BB0000000000000000000017 /* iTabPagerDemo.app */;
@@ -350,10 +350,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BB0000000000000000000041 /* iTabPager */ = {
+		BB0000000000000000000041 /* ITabPager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB0000000000000000000040 /* XCLocalSwiftPackageReference "../" */;
-			productName = iTabPager;
+			productName = ITabPager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

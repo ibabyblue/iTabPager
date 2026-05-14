@@ -1,5 +1,5 @@
 import SwiftUI
-import iTabPager
+import ITabPager
 
 struct CustomStyleDemo: View {
     let tabs = ["全部", "视频", "图文", "直播"]

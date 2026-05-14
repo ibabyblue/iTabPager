@@ -1,5 +1,5 @@
 import SwiftUI
-import iTabPager
+import ITabPager
 
 enum BasicTab: String, CaseIterable {
     case recommended = "推荐"

@@ -1,4 +1,4 @@
-# iTabPager
+# ITabPager
 
 A tab-strip pager component for iOS 17+. UIScrollView paging core, SwiftUI public API, zero third-party dependencies.
 
@@ -31,13 +31,13 @@ In Xcode choose **File → Add Package Dependencies**, enter the repository URL,
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ibabyblue/iTabPager", from: "0.0.2")
+    .package(url: "https://github.com/ibabyblue/ITabPager", from: "0.0.2")
 ],
 targets: [
     .target(
         name: "YourTarget",
         dependencies: [
-            .product(name: "iTabPager", package: "iTabPager")
+            .product(name: "ITabPager", package: "ITabPager")
         ]
     )
 ]
@@ -46,7 +46,7 @@ targets: [
 ## Quick Start
 
 ```swift
-import iTabPager
+import ITabPager
 
 enum Tab: String, CaseIterable {
     case recommended = "推荐"
@@ -152,7 +152,7 @@ public struct ITabPagerStyle {
 
 ## Demo
 
-Open `demo/iTabPagerDemo.xcodeproj`, select a simulator and run. Covers three scenarios:
+Open `demo/ITabPagerDemo.xcodeproj`, select a simulator and run. Covers three scenarios:
 
 - **Basic** — three-tab pager with a plain list
 - **Overflow** — fifteen tabs that overflow the strip; auto-scrolls to keep the selected tab visible
@@ -174,4 +174,4 @@ Open `demo/iTabPagerDemo.xcodeproj`, select a simulator and run. Covers three sc
 
 ## License
 
-iTabPager is available under the MIT license. See the [LICENSE](LICENSE) file for details.
+ITabPager is available under the MIT license. See the [LICENSE](LICENSE) file for details.

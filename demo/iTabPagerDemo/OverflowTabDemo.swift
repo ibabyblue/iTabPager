@@ -1,5 +1,5 @@
 import SwiftUI
-import iTabPager
+import ITabPager
 
 struct OverflowTabDemo: View {
     let tabs = ["关注", "推荐", "热榜", "游戏", "影视", "音乐", "体育", "科技", "财经", "汽车", "美食", "旅游", "时尚", "健康", "教育"]

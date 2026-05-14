@@ -1,6 +1,6 @@
 import XCTest
 import SwiftUI
-@testable import iTabPager
+@testable import ITabPager
 
 final class LerpTests: XCTestCase {
     func test_lerp_atZero() {
