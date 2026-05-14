@@ -31,7 +31,7 @@ In Xcode choose **File → Add Package Dependencies**, enter the repository URL,
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ibabyblue/ITabPager", from: "0.0.2")
+    .package(url: "https://github.com/ibabyblue/ITabPager", from: "0.0.3")
 ],
 targets: [
     .target(
